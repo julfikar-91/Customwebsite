@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | North Bengal Academy</title>
+    <meta name="description" content="Explore our vibrant school life through photos of events, classrooms, sports, and celebrations at North Bengal Academy.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/school.png">
+    <style>
+        .nav-admission-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff !important;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            animation: admissionGlow 2s ease-in-out infinite alternate;
+        }
+        .admission-pulse {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+        @keyframes admissionGlow {
+            from { box-shadow: 0 0 8px rgba(16,185,129,0.4); }
+            to   { box-shadow: 0 0 20px rgba(16,185,129,0.8); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.5; transform: scale(0.75); }
+        }
+        .mob-admission { background: linear-gradient(135deg,#10b981,#059669)!important; color:#fff!important; border-radius:30px!important; padding:8px 20px!important; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="header-wrapper sticky" id="headerWrapper">
+        <nav class="pill-nav">
+            <div class="logo-area">
+                <div class="logo-img"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h1>North Bengal Academy</h1>
+                    <span>নর্থ বেঙ্গল একাডেমী</span>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#academics">Academics</a></li>
+                <li><a href="index.html#faculty">Faculty</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="#" class="nav-login-btn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li id="admissionNavBadge" style="display:none;"><a href="index.html#contact" class="nav-admission-badge"><span class="admission-pulse"></span> Admission Open</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+        <ul>
+            <li><a href="index.html" class="mob-link">Home</a></li>
+            <li><a href="index.html#about" class="mob-link">About</a></li>
+            <li><a href="index.html#academics" class="mob-link">Academics</a></li>
+            <li><a href="index.html#faculty" class="mob-link">Faculty</a></li>
+            <li><a href="gallery.html" class="mob-link">Gallery</a></li>
+            <li><a href="index.html#contact" class="mob-link">Contact</a></li>
+            <li><a href="#" class="mob-link mob-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li id="admissionMobBadge" style="display:none;"><a href="index.html#contact" class="mob-link mob-admission"><span class="admission-pulse"></span> Admission Open</a></li>
+        </ul>
+    </div>
+
+    <!-- GALLERY HERO -->
+    <div class="gallery-hero">
+        <div class="gallery-hero-content" data-aos="fade-up">
+            <span class="section-subtitle">Life at School</span>
+            <h1>Our <span>Gallery</span></h1>
+            <p>Snapshots of joy, learning, and growth at North Bengal Academy.</p>
+        </div>
+    </div>
+
+    <!-- FILTER TABS -->
+    <section class="gallery-main section-padding">
+        <div class="container">
+            <div class="filter-tabs" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="classroom">Classrooms</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+                <button class="filter-btn" data-filter="arts">Arts &amp; Crafts</button>
+            </div>
+
+            <div class="gallery-masonry" id="galleryGrid" data-api-ready="true">
+                <!-- Classroom -->
+                <div class="gal-item" data-cat="classroom" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&fit=crop" alt="Classroom Learning">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Classroom Learning</p></div>
+                </div>
+                <div class="gal-item tall" data-cat="classroom" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&fit=crop" alt="Interactive Lesson">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Interactive Lesson</p></div>
+                </div>
+                <div class="gal-item" data-cat="classroom" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&fit=crop" alt="Reading Corner">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Reading Corner</p></div>
+                </div>
+                <!-- Events -->
+                <div class="gal-item" data-cat="events" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=800&fit=crop" alt="Annual Day">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Annual Day</p></div>
+                </div>
+                <div class="gal-item wide" data-cat="events" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1533206482629-458c20d7a27a?w=800&fit=crop" alt="Independence Day">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Independence Day</p></div>
+                </div>
+                <div class="gal-item" data-cat="events" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1467307983825-619715426c70?w=800&fit=crop" alt="Science Fair">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Science Fair</p></div>
+                </div>
+                <!-- Sports -->
+                <div class="gal-item tall" data-cat="sports" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?w=800&fit=crop" alt="Sports Day">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Sports Day</p></div>
+                </div>
+                <div class="gal-item" data-cat="sports" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1526676037777-05a232554f77?w=800&fit=crop" alt="Yoga Session">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Yoga Session</p></div>
+                </div>
+                <div class="gal-item" data-cat="sports" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&fit=crop" alt="Basketball">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Basketball</p></div>
+                </div>
+                <!-- Arts -->
+                <div class="gal-item" data-cat="arts" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=800&fit=crop" alt="Art Exhibition">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Art Exhibition</p></div>
+                </div>
+                <div class="gal-item wide" data-cat="arts" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1514525253361-bee8718a300c?w=800&fit=crop" alt="Music Festival">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>Music Festival</p></div>
+                </div>
+                <div class="gal-item" data-cat="arts" data-aos="zoom-in">
+                    <img src="https://images.unsplash.com/photo-1459749411177-042180ce673c?w=800&fit=crop" alt="Drama">
+                    <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>School Drama</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <div class="lb-overlay" id="lbOverlay"></div>
+        <div class="lb-content">
+            <button class="lb-close" id="lbClose"><i class="fas fa-times"></i></button>
+            <button class="lb-prev"  id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+            <img src="" alt="" id="lbImg">
+            <button class="lb-next"  id="lbNext"><i class="fas fa-chevron-right"></i></button>
+            <p class="lb-caption" id="lbCaption"></p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-brand">
+                    <div class="footer-logo-row">
+                        <div class="logo-img"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <h2>North Bengal Academy</h2>
+                            <p>Nurturing Future Thinkers</p>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">A co-educational school dedicated to holistic development through the Cambridge curriculum for children aged 3–10.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="index.html#academics"><i class="fas fa-chevron-right"></i> Academics</a></li>
+                        <li><a href="index.html#faculty"><i class="fas fa-chevron-right"></i> Our Faculty</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="index.html#contact"><i class="fas fa-chevron-right"></i> Admission</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i><span>Pashari Hat, Khairamari<br>West Bengal 736170</span></li>
+                        <li><i class="fas fa-phone-alt"></i><a href="tel:+919563663702">+91 095636 63702</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:enquiry@northbengalacademy.in">enquiry@northbengalacademy.in</a></li>
+                        <li><i class="fas fa-globe"></i><a href="https://sites.google.com" target="_blank">sites.google.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>Developed by <strong>VOYAGERMAN TECHNOLOGY</strong></span>
+                <span>Privacy Policy</span>
+                <span>&copy; <span id="year"></span> North Bengal Academy. All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-actions">
+        <a href="tel:+919563663702" class="float-btn call" aria-label="Call us"><i class="fas fa-phone-alt"></i></a>
+        <a href="https://wa.me/919563663702" class="float-btn whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="float-btn top" id="backToTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 700, once: true });
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileClose = document.getElementById('mobileClose');
+        hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        document.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+        // Back to top
+        const btt = document.getElementById('backToTop');
+        btt.style.opacity = '0';
+        window.addEventListener('scroll', () => { btt.style.opacity = window.scrollY > 300 ? '1' : '0'; });
+        btt.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Filter tabs
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galItems   = document.querySelectorAll('.gal-item');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.getAttribute('data-filter');
+                galItems.forEach(item => {
+                    if (cat === 'all' || item.getAttribute('data-cat') === cat) {
+                        item.style.display = '';
+                        item.style.opacity = '1';
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => { item.style.display = 'none'; }, 300);
+                    }
+                });
+            });
+        });
+
+        // Lightbox
+        const lightbox  = document.getElementById('lightbox');
+        const lbImg     = document.getElementById('lbImg');
+        const lbCaption = document.getElementById('lbCaption');
+        let currentIdx = 0;
+        let visibleItems = [];
+
+        function openLightbox(idx) {
+            visibleItems = [...document.querySelectorAll('.gal-item[style=""], .gal-item:not([style*="none"])')];
+            currentIdx = idx;
+            const item = visibleItems[currentIdx];
+            lbImg.src = item.querySelector('img').src;
+            lbCaption.textContent = item.querySelector('.gal-overlay p').textContent;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        document.querySelectorAll('.gal-item').forEach((item, i) => {
+            item.addEventListener('click', () => {
+                visibleItems = [...galItems].filter(el => el.style.display !== 'none');
+                const vIdx = visibleItems.indexOf(item);
+                openLightbox(vIdx);
+            });
+        });
+
+        document.getElementById('lbClose').addEventListener('click', () => {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+        document.getElementById('lbOverlay').addEventListener('click', () => {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+        document.getElementById('lbPrev').addEventListener('click', () => {
+            currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
+            openLightbox(currentIdx);
+        });
+        document.getElementById('lbNext').addEventListener('click', () => {
+            currentIdx = (currentIdx + 1) % visibleItems.length;
+            openLightbox(currentIdx);
+        });
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+            if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+            if (e.key === 'Escape') document.getElementById('lbClose').click();
+        });
+    </script>
+
+    <!-- BetaZenX API Integration -->
+    <script>
+        const BETAZENX_API_KEY  = "YOUR_API_KEY_HERE";
+        const BETAZENX_SLUG     = "YOUR_SCHOOL_SLUG_HERE";
+        const BETAZENX_BASE_URL = "http://localhost:5000/api";
+
+        async function loadAdmissionStatus() {
+            try {
+                const res = await fetch(`${BETAZENX_BASE_URL}/public/website/${BETAZENX_SLUG}/admission-status`);
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data.admissionOpen) {
+                    const nb = document.getElementById("admissionNavBadge");
+                    const mb = document.getElementById("admissionMobBadge");
+                    if (nb) nb.style.display = "";
+                    if (mb) mb.style.display = "";
+                }
+            } catch (e) { /* offline or not configured */ }
+        }
+
+        async function loadGalleryFromAPI() {
+            if (BETAZENX_API_KEY === "YOUR_API_KEY_HERE") return;
+            try {
+                const res = await fetch(
+                    `${BETAZENX_BASE_URL}/public/website/${BETAZENX_SLUG}/gallery`,
+                    { headers: { "X-API-Key": BETAZENX_API_KEY } }
+                );
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!data.images || data.images.length === 0) return;
+
+                const grid = document.getElementById("galleryGrid");
+                if (!grid) return;
+
+                // Append API images after existing static ones, or replace all
+                // To REPLACE static images with API images, uncomment next line:
+                // grid.innerHTML = "";
+
+                data.images.forEach((url, i) => {
+                    const sizes = ["", " tall", " wide", ""];
+                    const sizeClass = sizes[i % sizes.length];
+                    const div = document.createElement("div");
+                    div.className = `gal-item${sizeClass}`;
+                    div.setAttribute("data-cat", "all");
+                    div.setAttribute("data-aos", "zoom-in");
+                    div.innerHTML = `
+                        <img src="${url}" alt="Gallery Photo ${i + 1}" loading="lazy">
+                        <div class="gal-overlay"><i class="fas fa-expand-alt"></i><p>School Photo</p></div>
+                    `;
+                    grid.appendChild(div);
+                });
+
+                if (typeof AOS !== "undefined") AOS.refresh();
+            } catch (e) { console.log("[BetaZenX] Gallery API error, static fallback active."); }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            loadAdmissionStatus();
+            loadGalleryFromAPI();
+        });
+    </script>
+</body>
+</html>

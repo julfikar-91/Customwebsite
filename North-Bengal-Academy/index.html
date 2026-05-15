@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Bengal Academy | Nurturing Future Thinkers</title>
+    <meta name="description"
+        content="North Bengal Academy – A premier nursery and primary school in Pashari Hat, West Bengal, offering Cambridge curriculum for Play Group to Class IV.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/school.png">
+    <style>
+        /* BetaZenX API — Admission Open Badge */
+        .nav-admission-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff !important;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            animation: admissionGlow 2s ease-in-out infinite alternate;
+        }
+
+        .admission-pulse {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        @keyframes admissionGlow {
+            from {
+                box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+            }
+
+            to {
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(0.75);
+            }
+        }
+
+        .mob-admission {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            color: #fff !important;
+            border-radius: 30px !important;
+            padding: 8px 20px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div class="header-wrapper" id="headerWrapper">
+        <nav class="pill-nav">
+            <div class="logo-area">
+                <div class="logo-img"><i class="fas fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h1>North Bengal Academy</h1>
+                    <span>নর্থ বেঙ্গল একাডেমী</span>
+                </div>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#academics">Academics</a></li>
+                <li><a href="#faculty">Faculty</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="nav-login-btn"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li id="admissionNavBadge" style="display:none;"><a href="#contact" class="nav-admission-badge"><span
+                            class="admission-pulse"></span> Admission Open</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+        <ul>
+            <li><a href="#home" class="mob-link">Home</a></li>
+            <li><a href="#about" class="mob-link">About</a></li>
+            <li><a href="#academics" class="mob-link">Academics</a></li>
+            <li><a href="#faculty" class="mob-link">Faculty</a></li>
+            <li><a href="gallery.html" class="mob-link">Gallery</a></li>
+            <li><a href="#contact" class="mob-link">Contact</a></li>
+            <li><a href="#" class="mob-link mob-login"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li id="admissionMobBadge" style="display:none;"><a href="#contact" class="mob-link mob-admission"><span
+                        class="admission-pulse"></span> Admission Open</a></li>
+        </ul>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="hero-slider">
+        <div class="container hero-layout">
+            <div class="hero-content" data-aos="fade-right" data-aos-delay="200">
+                <span class="hero-badge">Cambridge Curriculum · Play Group to Class IV</span>
+                <h2>Welcome To <br><span>North Bengal Academy</span></h2>
+                <p>A future-ready school nurturing excellence, values, and holistic growth in a safe and inspiring
+                    learning environment.</p>
+                <div class="hero-btns">
+                    <a href="http://localhost:3000/cobschool/status" target="_blank" class="btn-outline"><i
+                            class="fas fa-chart-line"></i> Check Online Stats</a>
+                    <a href="http://localhost:3000/cobschool/apply" target="_blank" class="btn-primary"><i
+                            class="fas fa-user-plus"></i> Apply Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint"><i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <!-- ===== STATS BAR ===== -->
+    <section id="stats" class="stats-bar">
+        <div class="container stats-inner">
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <div><span class="counter" data-target="450">0</span>
+                    <p>Happy Students</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <div><span class="counter" data-target="25">0</span>
+                    <p>Expert Teachers</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-star"></i>
+                <div><span class="counter" data-target="10">0</span>
+                    <p>Years of Excellence</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-trophy"></i>
+                <div><span class="counter" data-target="98">0</span>%<p>Parent Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US (Timeline) ===== -->
+    <section id="about" class="timeline-section section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Our Strengths</span>
+                <h2 class="section-title">Why <span>Choose Us?</span></h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-icon tl-1"></div>
+                    <div class="timeline-content">
+                        <p>Holistic Development through Globally Recognized Cambridge Curriculum</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-icon tl-2"></div>
+                    <div class="timeline-content">
+                        <p>Small class size for personalized, individual attention</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-icon tl-3"></div>
+                    <div class="timeline-content">
+                        <p>Safe, Stimulating, and Inclusive Learning Environment</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-icon tl-4"></div>
+                    <div class="timeline-content">
+                        <p>Experiential learning through hands-on activities and storytelling</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-icon tl-5"></div>
+                    <div class="timeline-content">
+                        <p>Early Exposure to Foundational STEAM and Multiple Languages</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-icon tl-6"></div>
+                    <div class="timeline-content">
+                        <p>Qualified, Caring, and Experienced Educators at every level</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACADEMICS ===== -->
+    <section id="academics" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Cambridge International</span>
+                <h2 class="section-title">Our <span>Academics</span></h2>
+                <p class="section-desc">Comprehensive play-based to primary programmes for ages 3–10.</p>
+            </div>
+            <div class="academic-grid">
+                <div class="academic-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="card-icon-wrap" style="--c:#e63946"><i class="fas fa-shapes"></i></div>
+                    <h3>Cambridge Early Years Nursery</h3>
+                    <div class="meta-info">
+                        <span><i class="fas fa-child"></i> Age 3–4 years</span>
+                        <span><i class="far fa-calendar-alt"></i> Mon–Fri</span>
+                    </div>
+                    <p>Child-centred and play-based. Young learners develop at their own pace, make choices, and build
+                        self-worth — getting the best start in life.</p>
+                </div>
+                <div class="academic-card" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="card-icon-wrap" style="--c:#8338ec"><i class="fas fa-font"></i></div>
+                    <h3>Cambridge Early Years Lower KG</h3>
+                    <div class="meta-info">
+                        <span><i class="fas fa-child"></i> Age 4–5 years</span>
+                        <span><i class="far fa-calendar-alt"></i> Mon–Fri</span>
+                    </div>
+                    <p>Nurturing key milestones and foundational skills. Encourages curiosity, confidence, and early
+                        development to help children thrive both in school and everyday life.</p>
+                </div>
+                <div class="academic-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="card-icon-wrap" style="--c:#fb8500"><i class="fas fa-cubes"></i></div>
+                    <h3>Cambridge Primary Upper KG</h3>
+                    <div class="meta-info">
+                        <span><i class="fas fa-child"></i> Age 5–6 years</span>
+                        <span><i class="far fa-calendar-alt"></i> Mon–Fri</span>
+                    </div>
+                    <p>A balanced curriculum with engaging resources, teacher training, and assessment tools. Builds
+                        strong early literacy, numeracy, and social skills.</p>
+                </div>
+                <div class="academic-card" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="card-icon-wrap" style="--c:#ffb703"><i class="fas fa-pencil-alt"></i></div>
+                    <h3>Cambridge Primary Class I</h3>
+                    <div class="meta-info">
+                        <span><i class="fas fa-child"></i> Age 6–7 years</span>
+                        <span><i class="far fa-calendar-alt"></i> Mon–Fri</span>
+                    </div>
+                    <p>Strengthens core academic concepts while nurturing creativity and values. Focuses on literacy,
+                        numeracy, and enquiry-based learning.</p>
+                </div>
+                <div class="academic-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="card-icon-wrap" style="--c:#2a9d8f"><i class="fas fa-book-open"></i></div>
+                    <h3>Cambridge Primary Class II</h3>
+                    <div class="meta-info">
+                        <span><i class="fas fa-child"></i> Age 7–8 years</span>
+                        <span><i class="far fa-calendar-alt"></i> Mon–Fri</span>
+                    </div>
+                    <p>Expands learning through subject integration, hands-on projects, and collaboration. Supports
+                        holistic growth for intellectual and emotional development.</p>
+                </div>
+                <div class="academic-card" data-aos="zoom-in" data-aos-delay="350">
+                    <div class="card-icon-wrap" style="--c:#0077b6"><i class="fas fa-flask"></i></div>
+                    <h3>Cambridge Primary Class III</h3>
+                    <div class="meta-info">
+                        <span><i class="fas fa-child"></i> Age 8–9 years</span>
+                        <span><i class="far fa-calendar-alt"></i> Mon–Fri</span>
+                    </div>
+                    <p>Introducing structured scientific inquiry and expanding social studies concepts. Encourages
+                        analytical thinking and deeper understanding of the world.</p>
+                </div>
+                <div class="academic-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="card-icon-wrap" style="--c:#e63946"><i class="fas fa-calculator"></i></div>
+                    <h3>Cambridge Primary Class IV</h3>
+                    <div class="meta-info">
+                        <span><i class="fas fa-child"></i> Age 9–10 years</span>
+                        <span><i class="far fa-calendar-alt"></i> Mon–Fri</span>
+                    </div>
+                    <p>Developing advanced analytical skills and linguistic competence. Prepares students for more
+                        complex academic challenges with confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FACULTY ===== -->
+    <section id="faculty" class="section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Our Educators</span>
+                <h2 class="section-title">Meet Our <span>Faculty</span></h2>
+                <p class="section-desc">Dedicated, passionate teachers shaping the minds of tomorrow.</p>
+            </div>
+            <div class="faculty-grid">
+                <div class="faculty-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faculty-img">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&fit=crop"
+                            alt="Sunita Roy – Principal">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3>Sunita Roy</h3>
+                        <p class="designation">Principal &amp; Senior Educator</p>
+                        <p class="bio">15+ years in early childhood education, guiding our school with warmth and
+                            vision.</p>
+                    </div>
+                </div>
+                <div class="faculty-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faculty-img">
+                        <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=600&fit=crop"
+                            alt="Arunabha Das – Primary Coordinator">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3>Arunabha Das</h3>
+                        <p class="designation">Primary Coordinator</p>
+                        <p class="bio">Passionate about interactive learning and curriculum development for primary
+                            classes.</p>
+                    </div>
+                </div>
+                <div class="faculty-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faculty-img">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&fit=crop"
+                            alt="Priyanka Sen – Nursery In-charge">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3>Priyanka Sen</h3>
+                        <p class="designation">Nursery (LKG/UKG) In-charge</p>
+                        <p class="bio">Specialist in play-way methodology and creating a nurturing environment for young
+                            learners.</p>
+                    </div>
+                </div>
+                <div class="faculty-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faculty-img">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&fit=crop"
+                            alt="Rahul Ghosh – Science Teacher">
+                        <div class="faculty-overlay">
+                            <div class="faculty-social">
+                                <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faculty-info">
+                        <h3>Rahul Ghosh</h3>
+                        <p class="designation">STEAM Facilitator</p>
+                        <p class="bio">Brings science and creativity to life through hands-on experiments and
+                            storytelling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section id="testimonials" class="testimonials-section section-padding bg-light">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Community</span>
+                <h2 class="section-title">What <span>Parents Say</span></h2>
+            </div>
+            <div class="testimonial-container">
+                <div class="test-row" data-aos="fade-up">
+                    <div class="test-bubble">
+                        <div class="stars">★★★★★</div>
+                        <p class="test-text">"We cherish the wonderful memories and strong foundation our child gained
+                            at North Bengal Academy. The nurturing environment and the Cambridge curriculum give
+                            children the best start in life. We are so excited and are confident it will offer an
+                            equally enriching and supportive experience."</p>
+                        <div class="test-author">
+                            <img src="https://i.pravatar.cc/80?u=shradha" alt="Shradha Jaiswal">
+                            <div class="author-info">
+                                <h4>Shradha Jaiswal</h4>
+                                <p>Parent of Samarth Jaiswal, Class I</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-image-large">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&fit=crop"
+                            alt="Parent">
+                    </div>
+                </div>
+                <div class="test-row reverse" data-aos="fade-up">
+                    <div class="test-bubble">
+                        <div class="stars">★★★★★</div>
+                        <p class="test-text">"We're delighted with North Bengal Academy's progressive Cambridge
+                            programme. This school is exactly what we wished for and fills a significant gap in the
+                            educational landscape here. We truly value the open communication and involvement as
+                            essential parts of our child's development journey."</p>
+                        <div class="test-author">
+                            <img src="https://i.pravatar.cc/80?u=puja" alt="Puja Singh">
+                            <div class="author-info">
+                                <h4>Puja Singh</h4>
+                                <p>Parent of Veer Singh, Upper KG</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="test-image-large">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&fit=crop"
+                            alt="Parent">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALLERY PREVIEW (API-Ready) ===== -->
+    <section class="gallery-preview section-padding">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-subtitle">Life at School</span>
+                <h2 class="section-title">Our <span>Gallery</span></h2>
+            </div>
+            <div class="gallery-grid" id="galleryPreviewGrid" data-aos="fade-up">
+                <!-- Static fallback images (replaced by API data when available) -->
+                <div class="g-item"><img
+                        src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&fit=crop"
+                        alt="Classroom">
+                    <div class="g-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="g-item"><img
+                        src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&fit=crop"
+                        alt="Activities">
+                    <div class="g-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="g-item"><img
+                        src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&fit=crop" alt="Sports">
+                    <div class="g-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="g-item"><img
+                        src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&fit=crop" alt="Arts">
+                    <div class="g-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="g-item"><img src="https://images.unsplash.com/photo-1551966775-a4ddc8df052b?w=600&fit=crop"
+                        alt="Music">
+                    <div class="g-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+                <div class="g-item"><img
+                        src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&fit=crop" alt="Library">
+                    <div class="g-overlay"><i class="fas fa-expand"></i></div>
+                </div>
+            </div>
+            <div class="text-center" data-aos="fade-up" style="margin-top:40px;">
+                <a href="gallery.html" class="btn-secondary">View Full Gallery <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT / FOOTER ===== -->
+    <footer class="main-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-brand">
+                    <div class="footer-logo-row">
+                        <div class="logo-img"><i class="fas fa-graduation-cap"></i></div>
+                        <div>
+                            <h2>North Bengal Academy</h2>
+                            <p>Nurturing Future Thinkers</p>
+                        </div>
+                    </div>
+                    <p class="footer-tagline">A co-educational school dedicated to holistic development through the
+                        Cambridge curriculum for children aged 3–10.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#academics"><i class="fas fa-chevron-right"></i> Academics</a></li>
+                        <li><a href="#faculty"><i class="fas fa-chevron-right"></i> Our Faculty</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Admission</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col" id="contact-info">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i><span>Pashari Hat, Khairamari<br>West Bengal
+                                736170</span></li>
+                        <li><i class="fas fa-phone-alt"></i><a href="tel:+919563663702">+91 095636 63702</a></li>
+                        <li><i class="fas fa-envelope"></i><a
+                                href="mailto:enquiry@northbengalacademy.in">enquiry@northbengalacademy.in</a></li>
+                        <li><i class="fas fa-globe"></i><a href="https://sites.google.com"
+                                target="_blank">sites.google.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>Developed by <strong>BetaZenX Technology</strong></span>
+                <span>Privacy Policy</span>
+                <span>&copy; <span id="year"></span> North Bengal Academy. All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-actions">
+        <a href="tel:+919563663702" class="float-btn call" aria-label="Call us"><i class="fas fa-phone-alt"></i></a>
+        <a href="https://wa.me/919563663702" class="float-btn whatsapp" aria-label="WhatsApp"><i
+                class="fab fa-whatsapp"></i></a>
+        <a href="#home" class="float-btn top" id="backToTop" aria-label="Back to top"><i
+                class="fas fa-chevron-up"></i></a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 50 });
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar scroll sticky effect
+        const headerWrapper = document.getElementById('headerWrapper');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                headerWrapper.classList.add('sticky');
+            } else {
+                headerWrapper.classList.remove('sticky');
+            }
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileClose = document.getElementById('mobileClose');
+        hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+        mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        document.querySelectorAll('.mob-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Back to top
+        const backToTop = document.getElementById('backToTop');
+        backToTop.style.opacity = '0';
+        window.addEventListener('scroll', () => {
+            backToTop.style.opacity = window.scrollY > 300 ? '1' : '0';
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = +entry.target.getAttribute('data-target');
+                    let count = 0;
+                    const step = target / 60;
+                    const timer = setInterval(() => {
+                        count += step;
+                        entry.target.textContent = Math.min(Math.ceil(count), target);
+                        if (count >= target) clearInterval(timer);
+                    }, 30);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => counterObserver.observe(c));
+    </script>
+
+    <!-- ======================================================
+         BetaZenX API Integration
+         Set your API_KEY and SCHOOL_SLUG from:
+         Admin Panel → Directory → Admission & API tab
+    ======================================================= -->
+    <script>
+        // ── BetaZenX Configuration ──────────────────────────────────
+        const BETAZENX_API_KEY = "YOUR_API_KEY_HERE";     // Paste from Admin → Directory → Admission & API
+        const BETAZENX_SLUG = "YOUR_SCHOOL_SLUG_HERE"; // Your school slug
+        const BETAZENX_BASE_URL = "http://localhost:5000/api"; // Change to your server URL in production
+
+        // ── Fetch admission status (no API key needed) ───────────────
+        async function loadAdmissionStatus() {
+            try {
+                const res = await fetch(
+                    `${BETAZENX_BASE_URL}/public/website/${BETAZENX_SLUG}/admission-status`
+                );
+                if (!res.ok) return;
+                const data = await res.json();
+                const navBadge = document.getElementById("admissionNavBadge");
+                const mobBadge = document.getElementById("admissionMobBadge");
+                if (data.admissionOpen) {
+                    if (navBadge) navBadge.style.display = "";
+                    if (mobBadge) mobBadge.style.display = "";
+                }
+            } catch (e) {
+                console.log("[BetaZenX] Could not reach API (offline or not configured yet).");
+            }
+        }
+
+        // ── Fetch gallery from API ────────────────────────────────────
+        async function loadGalleryFromAPI() {
+            if (BETAZENX_API_KEY === "YOUR_API_KEY_HERE") return; // Not configured
+            try {
+                const res = await fetch(
+                    `${BETAZENX_BASE_URL}/public/website/${BETAZENX_SLUG}/gallery`,
+                    { headers: { "X-API-Key": BETAZENX_API_KEY } }
+                );
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!data.images || data.images.length === 0) return;
+
+                const grid = document.getElementById("galleryPreviewGrid");
+                if (!grid) return;
+
+                // Replace static images with API images (show first 6)
+                const preview = data.images.slice(0, 6);
+                grid.innerHTML = preview.map(url => `
+                    <div class="g-item">
+                        <img src="${url}" alt="School Gallery" loading="lazy">
+                        <div class="g-overlay"><i class="fas fa-expand"></i></div>
+                    </div>
+                `).join("");
+            } catch (e) {
+                console.log("[BetaZenX] Gallery API not reachable, using static fallback.");
+            }
+        }
+
+        // ── Fetch featured teachers from API ──────────────────────────
+        async function loadTeachersFromAPI() {
+            if (BETAZENX_API_KEY === "YOUR_API_KEY_HERE") return; // Not configured
+            try {
+                const res = await fetch(
+                    `${BETAZENX_BASE_URL}/public/website/${BETAZENX_SLUG}/teachers`,
+                    { headers: { "X-API-Key": BETAZENX_API_KEY } }
+                );
+                if (!res.ok) return;
+                const data = await res.json();
+                if (!data.teachers || data.teachers.length === 0) return;
+
+                const grid = document.querySelector(".faculty-grid");
+                if (!grid) return;
+
+                grid.innerHTML = data.teachers.map((t, i) => `
+                    <div class="faculty-card" data-aos="fade-up" data-aos-delay="${100 + i * 100}">
+                        <div class="faculty-img">
+                            <img src="${t.photoUrl || 'https://i.pravatar.cc/400?u=' + t.id}" alt="${t.name}">
+                            <div class="faculty-overlay">
+                                <div class="faculty-social">
+                                    <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="faculty-info">
+                            <h3>${t.name}</h3>
+                            <p class="designation">${t.designation || ''}</p>
+                            <p class="bio">${t.bio || (t.qualification ? t.qualification + (t.experience ? ' · ' + t.experience + ' experience' : '') : '')}</p>
+                        </div>
+                    </div>
+                `).join("");
+
+                // Re-init AOS for newly added elements
+                if (typeof AOS !== 'undefined') AOS.refresh();
+            } catch (e) {
+                console.log("[BetaZenX] Teachers API not reachable, using static fallback.");
+            }
+        }
+
+        // ── Initialize on page load ───────────────────────────────────
+        document.addEventListener("DOMContentLoaded", function () {
+            loadAdmissionStatus();
+            loadGalleryFromAPI();
+            loadTeachersFromAPI();
+        });
+    </script>
+</body>
+
+</html>
