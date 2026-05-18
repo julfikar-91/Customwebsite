@@ -463,10 +463,20 @@
     const config = schoolFullData?.config || {};
     const school = schoolFullData?.school || { name: schoolName };
     const teachers = schoolFullData?.teachers?.teachers || [];
+    const classes = schoolFullData?.classes || [];
+    const notices = schoolFullData?.notices || [];
     
+    const classesList = classes.length > 0
+      ? classes.map(c => `- ${c.className}: Monthly Fee of ₹${Number(c.monthlyFee || 0)}`).join("\n")
+      : "Not configured yet.";
+
     const teachersList = teachers.length > 0
       ? teachers.map(t => `- ${t.name}: ${t.designation || 'Educator'} (${t.qualification || 'N/A'}). ${t.bio || ''}`).join("\n")
       : "None configured yet.";
+
+    const noticesList = notices.length > 0
+      ? notices.map(n => `- [${new Date(n.date).toLocaleDateString()}] ${n.title}: ${n.content} (Category: ${n.category})`).join("\n")
+      : "No recent announcements.";
 
     const systemInstruction = `You are a warm, helpful, and highly intelligent AI Admissions & Support Assistant for ${school.name || "North Bengal Academy"}.
 Your goal is to answer queries from parents, students, and prospective families with 100% accurate, specific information based ONLY on the school's verified details below.
@@ -489,8 +499,14 @@ Your goal is to answer queries from parents, students, and prospective families 
 - Admissions Status: ${schoolFullData?.admissionOpen ? "OPEN (Active)" : "CLOSED"}
 - School Website Online Portal: https://betazenx.online/@${slug} (Students and parents can apply online at /apply and check status at /status)
 
+=== ACADEMIC PROGRAMS & FEES STRUCTURE ===
+${classesList}
+
 === FACULTY & STAFF ===
 ${teachersList}
+
+=== RECENT ANNOUNCEMENTS & NOTICES ===
+${noticesList}
 
 === INSTRUCTIONS FOR YOUR CONVERSATION ===
 1. Be polite, professional, and friendly. Answer in a structured and easily readable format.
