@@ -11,6 +11,8 @@
   let localApiUrl = "http://localhost:5000/api";
   
   let baseUrl = deployMode ? prodApiUrl : localApiUrl;
+  let geminiApiKey = "";
+  let apiKey = "";
 
   // Auto-detect local development/testing vs remote production environments
   const isLocalEnv = window.location.hostname === "localhost" || 
@@ -25,8 +27,14 @@
   try {
     if (typeof BETAZENX_CONFIG !== "undefined") {
       if (BETAZENX_CONFIG.slug) slug = BETAZENX_CONFIG.slug;
+      if (BETAZENX_CONFIG.apiKey) apiKey = BETAZENX_CONFIG.apiKey;
+      if (BETAZENX_CONFIG.geminiApiKey) geminiApiKey = BETAZENX_CONFIG.geminiApiKey;
       if (BETAZENX_CONFIG.baseUrl) {
         baseUrl = BETAZENX_CONFIG.baseUrl;
+      } else if (BETAZENX_CONFIG.prodApiUrl && !isLocalEnv) {
+        baseUrl = BETAZENX_CONFIG.prodApiUrl;
+      } else if (BETAZENX_CONFIG.localApiUrl && isLocalEnv) {
+        baseUrl = BETAZENX_CONFIG.localApiUrl;
       }
     }
   } catch (e) {}
@@ -196,24 +204,33 @@
     fetchSchoolProfile();
   }
 
+  let schoolFullData = null;
+
   // Fetch verified school details dynamically from public website API
   async function fetchSchoolProfile() {
     try {
-      const res = await fetch(`${baseUrl}/public/website/${slug}`);
+      const headers = {};
+      if (apiKey) headers["X-API-Key"] = apiKey;
+      
+      const res = await fetch(`${baseUrl}/public/website/${slug}/full`, { headers });
       if (res.ok) {
         const data = await res.json();
         if (data) {
-          if (data.schoolName) {
+          schoolFullData = data;
+          const school = data.school || {};
+          const config = data.config || {};
+          
+          if (school.name) {
             const headerName = document.getElementById("cbSchoolName");
-            if (headerName) headerName.textContent = data.schoolName;
+            if (headerName) headerName.textContent = school.name;
           }
-          if (data.contactPhone) {
+          if (config.contactPhone) {
             const callLink = document.getElementById("cbCallLink");
-            if (callLink) callLink.href = `tel:${data.contactPhone}`;
+            if (callLink) callLink.href = `tel:${config.contactPhone}`;
           }
-          if (data.whatsappNumber) {
+          if (config.whatsappNumber) {
             const waLink = document.getElementById("cbWhatsappLink");
-            const cleanNumber = data.whatsappNumber.replace(/[^0-9]/g, "");
+            const cleanNumber = config.whatsappNumber.replace(/[^0-9]/g, "");
             if (waLink) waLink.href = `https://wa.me/${cleanNumber}`;
           }
         }
@@ -442,26 +459,89 @@
       processedMessage = `[System instructions: ${directive}] ${messageText}`;
     }
 
-    const payload = {
-      message: processedMessage,
-      history: chatHistory
-    };
+    // 1. Build dynamic system instruction based on fetched school data
+    const config = schoolFullData?.config || {};
+    const school = schoolFullData?.school || { name: schoolName };
+    const teachers = schoolFullData?.teachers?.teachers || [];
+    
+    const teachersList = teachers.length > 0
+      ? teachers.map(t => `- ${t.name}: ${t.designation || 'Educator'} (${t.qualification || 'N/A'}). ${t.bio || ''}`).join("\n")
+      : "None configured yet.";
+
+    const systemInstruction = `You are a warm, helpful, and highly intelligent AI Admissions & Support Assistant for ${school.name || "North Bengal Academy"}.
+Your goal is to answer queries from parents, students, and prospective families with 100% accurate, specific information based ONLY on the school's verified details below.
+
+=== SCHOOL GENERAL PROFILE ===
+- School Name: ${school.name || "North Bengal Academy"}
+- Tagline: ${config.tagline || "Nurturing Future Thinkers"}
+- Local Name: ${config.localName || ""}
+- Address: ${config.address || "Not specified"}
+- Phone: ${config.contactPhone || "Not specified"}
+- Email: ${config.contactEmail || "Not specified"}
+- Whatsapp Number: ${config.whatsappNumber || "Not specified"}
+- Legacy/Founding Year: ${config.legacyYear || "Not specified"}
+- Welcome Message: ${config.welcomeMessage || ""}
+- About Us: ${config.aboutUs || ""}
+- Social Media:
+  - Facebook: ${config.facebook || "N/A"}
+  - Instagram: ${config.instagram || "N/A"}
+  - YouTube: ${config.youtube || "N/A"}
+- Admissions Status: ${schoolFullData?.admissionOpen ? "OPEN (Active)" : "CLOSED"}
+- School Website Online Portal: https://betazenx.online/@${slug} (Students and parents can apply online at /apply and check status at /status)
+
+=== FACULTY & STAFF ===
+${teachersList}
+
+=== INSTRUCTIONS FOR YOUR CONVERSATION ===
+1. Be polite, professional, and friendly. Answer in a structured and easily readable format.
+2. ALWAYS prioritize the details provided in this prompt. Do NOT make up any fees, dates, or contact details.
+3. If asked about admissions, emphasize that admissions are currently ${schoolFullData?.admissionOpen ? "OPEN. Families can apply online at the portal: https://betazenx.online/@" + slug + "/apply" : "CLOSED. Please contact the school office or email them for the next session's schedule"}.
+4. If a user asks about the "last date" (শেষ তারিখ / ses tarikh / last date) of admission, explain that there is no fixed deadline configured yet, but seats are limited and filling up fast, so they are encouraged to apply online as soon as possible.
+5. Understand and resolve queries typed in "Banglish" (Bengali words typed in English characters, e.g. "ses tarikh koto" -> "What is the last date?", "fees koto" -> "What are the fees?", "ভর্তি" -> admissions). Address them natively in the language chosen or in the language they used.
+6. If a piece of information is not present in the school profile above, politely explain that you don't have that specific detail in your database and guide them to contact the school office directly at ${config.contactPhone || "their phone"} or email ${config.contactEmail || "their email"}. Do not make up facts.
+7. You can converse in English, Bengali, Hindi, or any language the user uses. Support fully and naturally.
+`;
+
+    // 2. Build Gemini contents chat history format
+    const contents = chatHistory.map(h => ({
+      role: h.role === "user" ? "user" : "model",
+      parts: [{ text: h.content }]
+    }));
+    
+    // Add current user message
+    contents.push({
+      role: "user",
+      parts: [{ text: processedMessage }]
+    });
 
     try {
-      const response = await fetch(`${baseUrl}/public/website/${slug}/chatbot`, {
+      if (!geminiApiKey) {
+        throw new Error("Gemini API Key is not configured in client-side configuration.");
+      }
+
+      // Call Google Gemini API directly from browser!
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          contents: contents,
+          systemInstruction: {
+            parts: [{ text: systemInstruction }]
+          }
+        })
       });
 
       removeTypingIndicator();
 
-      if (!response.ok) throw new Error("Chatbot API failed.");
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error?.message || "Direct Gemini API call failed.");
+      }
 
       const data = await response.json();
-      const reply = data.reply || "I'm sorry, I encountered an issue processing your query.";
+      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm sorry, I encountered an issue processing your query.";
 
       appendMessage("bot", reply);
       
@@ -480,9 +560,9 @@
       console.error("[Chatbot Error]", error);
       removeTypingIndicator();
       appendMessage("bot", currentLang === "bn" 
-        ? "আমি সার্ভারের সাথে সংযুক্ত হতে পারছি না। অনুগ্রহ করে পৃষ্ঠাটি রিফ্রেশ করুন!" 
+        ? "আমি চ্যাটবট সার্ভারের সাথে সংযুক্ত হতে পারছি না। অনুগ্রহ করে পৃষ্ঠাটি রিফ্রেশ করুন!" 
         : currentLang === "hi" 
-          ? "मैं सर्वर से कनेक्ट नहीं हो पा रही हूँ। कृपया पेज को रीफ्रेश करें!" 
+          ? "मैं चैटबॉट सर्वर से कनेक्ट नहीं हो पा रही हूँ। कृपया पेज को रीफ्रेश करें!" 
           : "I am currently having trouble connecting to the school servers. Please call us directly or refresh to try again!"
       );
     }

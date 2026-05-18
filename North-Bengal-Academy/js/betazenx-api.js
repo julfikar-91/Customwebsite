@@ -4,18 +4,20 @@
  * All public endpoints are secure-by-default and verified via CORS on the ERP backend.
  */
 
-// ── BetaZenX ERP Client Configuration
-const BETAZENX_CONFIG = {
-    apiKey: "betazenx_api_nba_2026_xZ9q",        // Public client integration key
-    slug: "cobschool",                          // North Bengal Academy unique slug
-    deployMode: true,                           // Set to true for live server, false for local development
-    
-    prodBaseUrl: "https://betazenx.online",      // Production ERP domain
-    localBaseUrl: "http://localhost:3000",       // Local Next.js port
-    
-    prodApiUrl: "https://betazenx.online/api",   // Production API domain
-    localApiUrl: "http://localhost:5000/api",    // Local backend API port
-};
+// ── BetaZenX ERP Client Configuration (Fallback)
+if (typeof BETAZENX_CONFIG === "undefined") {
+    var BETAZENX_CONFIG = {
+        apiKey: "betazenx_api_nba_2026_xZ9q",        // Public client integration key
+        slug: "cobschool",                          // North Bengal Academy unique slug
+        deployMode: true,                           // Set to true for live server, false for local development
+        
+        prodBaseUrl: "https://betazenx.online",      // Production ERP domain
+        localBaseUrl: "http://localhost:3000",       // Local Next.js port
+        
+        prodApiUrl: "https://betazenx.online/api",   // Production API domain
+        localApiUrl: "http://localhost:5000/api",    // Local backend API port
+    };
+}
 
 // Hook to configure base URLs based on environment & deployMode
 (function() {
