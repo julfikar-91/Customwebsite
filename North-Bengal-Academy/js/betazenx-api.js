@@ -125,11 +125,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     const applyLink = document.getElementById("applyNowLink");
     if (applyLink) {
-        applyLink.href = `${baseDomain}/${BETAZENX_CONFIG.slug}/apply`;
+        applyLink.href = `${baseDomain}/@${BETAZENX_CONFIG.slug}/apply`;
     }
     const statusLink = document.getElementById("checkStatusLink");
     if (statusLink) {
-        statusLink.href = `${baseDomain}/${BETAZENX_CONFIG.slug}/status`;
+        statusLink.href = `${baseDomain}/@${BETAZENX_CONFIG.slug}/status`;
     }
 
     loadAdmissionStatus();
