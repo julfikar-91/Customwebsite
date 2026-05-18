@@ -8,6 +8,7 @@
     <meta name="description"
         content="North Bengal Academy – A premier nursery and primary school in Pashari Hat, West Bengal, offering Cambridge curriculum for Play Group to Class IV.">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/chatbot.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -129,9 +130,9 @@
                 <p>A future-ready school nurturing excellence, values, and holistic growth in a safe and inspiring
                     learning environment.</p>
                 <div class="hero-btns">
-                    <a href="http://137.184.77.140/cobschool/status" target="_blank" class="btn-outline"><i
+                    <a id="checkStatusLink" href="https://betazenx.online/cobschool/status" target="_blank" class="btn-outline"><i
                             class="fas fa-chart-line"></i> Check Online Stats</a>
-                    <a href="http://137.184.77.140/cobschool/apply" target="_blank" class="btn-primary"><i
+                    <a id="applyNowLink" href="https://betazenx.online/cobschool/apply" target="_blank" class="btn-primary"><i
                             class="fas fa-user-plus"></i> Apply Now</a>
                 </div>
             </div>
@@ -531,9 +532,6 @@
 
     <!-- Floating Buttons -->
     <div class="floating-actions">
-        <a href="tel:+919563663702" class="float-btn call" aria-label="Call us"><i class="fas fa-phone-alt"></i></a>
-        <a href="https://wa.me/919563663702" class="float-btn whatsapp" aria-label="WhatsApp"><i
-                class="fab fa-whatsapp"></i></a>
         <a href="#home" class="float-btn top" id="backToTop" aria-label="Back to top"><i
                 class="fas fa-chevron-up"></i></a>
     </div>
@@ -601,111 +599,9 @@
         counters.forEach(c => counterObserver.observe(c));
     </script>
 
-    <!-- ======================================================
-         BetaZenX API Integration
-         Set your API_KEY and SCHOOL_SLUG from:
-         Admin Panel → Directory → Admission & API tab
-    ======================================================= -->
-    <script>
-        // ── BetaZenX Configuration ──────────────────────────────────
-        const BETAZENX_API_KEY = "YOUR_API_KEY_HERE";     // Paste from Admin → Directory → Admission & API
-        const BETAZENX_SLUG = "YOUR_SCHOOL_SLUG_HERE"; // Your school slug
-        const BETAZENX_BASE_URL = "http://137.184.77.140/api"; // Change to your server URL in production
-
-        // ── Fetch admission status (no API key needed) ───────────────
-        async function loadAdmissionStatus() {
-            try {
-                const res = await fetch(
-                    `${BETAZENX_BASE_URL}/public/website/${BETAZENX_SLUG}/admission-status`
-                );
-                if (!res.ok) return;
-                const data = await res.json();
-                const navBadge = document.getElementById("admissionNavBadge");
-                const mobBadge = document.getElementById("admissionMobBadge");
-                if (data.admissionOpen) {
-                    if (navBadge) navBadge.style.display = "";
-                    if (mobBadge) mobBadge.style.display = "";
-                }
-            } catch (e) {
-                console.log("[BetaZenX] Could not reach API (offline or not configured yet).");
-            }
-        }
-
-        // ── Fetch gallery from API ────────────────────────────────────
-        async function loadGalleryFromAPI() {
-            if (BETAZENX_API_KEY === "YOUR_API_KEY_HERE") return; // Not configured
-            try {
-                const res = await fetch(
-                    `${BETAZENX_BASE_URL}/public/website/${BETAZENX_SLUG}/gallery`,
-                    { headers: { "X-API-Key": BETAZENX_API_KEY } }
-                );
-                if (!res.ok) return;
-                const data = await res.json();
-                if (!data.images || data.images.length === 0) return;
-
-                const grid = document.getElementById("galleryPreviewGrid");
-                if (!grid) return;
-
-                // Replace static images with API images (show first 6)
-                const preview = data.images.slice(0, 6);
-                grid.innerHTML = preview.map(url => `
-                    <div class="g-item">
-                        <img src="${url}" alt="School Gallery" loading="lazy">
-                        <div class="g-overlay"><i class="fas fa-expand"></i></div>
-                    </div>
-                `).join("");
-            } catch (e) {
-                console.log("[BetaZenX] Gallery API not reachable, using static fallback.");
-            }
-        }
-
-        // ── Fetch featured teachers from API ──────────────────────────
-        async function loadTeachersFromAPI() {
-            if (BETAZENX_API_KEY === "YOUR_API_KEY_HERE") return; // Not configured
-            try {
-                const res = await fetch(
-                    `${BETAZENX_BASE_URL}/public/website/${BETAZENX_SLUG}/teachers`,
-                    { headers: { "X-API-Key": BETAZENX_API_KEY } }
-                );
-                if (!res.ok) return;
-                const data = await res.json();
-                if (!data.teachers || data.teachers.length === 0) return;
-
-                const grid = document.querySelector(".faculty-grid");
-                if (!grid) return;
-
-                grid.innerHTML = data.teachers.map((t, i) => `
-                    <div class="faculty-card" data-aos="fade-up" data-aos-delay="${100 + i * 100}">
-                        <div class="faculty-img">
-                            <img src="${t.photoUrl || 'https://i.pravatar.cc/400?u=' + t.id}" alt="${t.name}">
-                            <div class="faculty-overlay">
-                                <div class="faculty-social">
-                                    <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="faculty-info">
-                            <h3>${t.name}</h3>
-                            <p class="designation">${t.designation || ''}</p>
-                            <p class="bio">${t.bio || (t.qualification ? t.qualification + (t.experience ? ' · ' + t.experience + ' experience' : '') : '')}</p>
-                        </div>
-                    </div>
-                `).join("");
-
-                // Re-init AOS for newly added elements
-                if (typeof AOS !== 'undefined') AOS.refresh();
-            } catch (e) {
-                console.log("[BetaZenX] Teachers API not reachable, using static fallback.");
-            }
-        }
-
-        // ── Initialize on page load ───────────────────────────────────
-        document.addEventListener("DOMContentLoaded", function () {
-            loadAdmissionStatus();
-            loadGalleryFromAPI();
-            loadTeachersFromAPI();
-        });
-    </script>
+    <!-- BetaZenX ERP Client API & Chatbot Integration -->
+    <script src="js/betazenx-api.js"></script>
+    <script src="js/chatbot.js"></script>
 </body>
 
 </html>
