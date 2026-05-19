@@ -3,3 +3,6 @@ Thumbs.db
 *.log
 .idea/
 .vscode/
+
+# Local Environment Configuration (Secrets & API Keys)
+North-Bengal-Academy/js/env.js

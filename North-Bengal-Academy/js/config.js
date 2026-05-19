@@ -5,7 +5,9 @@
  */
 const BETAZENX_CONFIG = {
     // 1. Google Gemini API Key for client-side chatbot (Fully standalone!)
-    geminiApiKey: "AIzaSyABjBNGIt17pQbTc0mHFi9gUix4XCW0ZQQ",
+    geminiApiKey: (typeof BETAZENX_ENV !== "undefined" && BETAZENX_ENV.geminiApiKey) 
+                  ? BETAZENX_ENV.geminiApiKey 
+                  : "YOUR_API_KEY_HERE",
 
     // 2. School metadata & integration settings
     slug: "cobschool",                           // Unique slug of the school
