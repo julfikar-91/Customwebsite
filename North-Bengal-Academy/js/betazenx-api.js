@@ -5,8 +5,8 @@
  */
 
 // ── BetaZenX ERP Client Configuration (Fallback)
-if (typeof BETAZENX_CONFIG === "undefined") {
-    var BETAZENX_CONFIG = {
+if (typeof window.BETAZENX_CONFIG === "undefined") {
+    window.BETAZENX_CONFIG = {
         apiKey: "betazenx_api_nba_2026_xZ9q",        // Public client integration key
         slug: "cobschool",                          // North Bengal Academy unique slug
         deployMode: true,                           // Set to true for live server, false for local development
@@ -18,6 +18,7 @@ if (typeof BETAZENX_CONFIG === "undefined") {
         localApiUrl: "http://localhost:5000/api",    // Local backend API port
     };
 }
+
 
 // Hook to configure base URLs based on environment & deployMode
 (function() {
